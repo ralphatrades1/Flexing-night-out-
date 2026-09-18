@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexing Organizer's Present Nightout Party</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#090014,#3b006b,#050505);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.card{
+  width:100%;
+  max-width:430px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:25px;
+  padding:30px 22px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+}
+
+.badge{
+  display:inline-block;
+  background:#ffd000;
+  color:#111;
+  padding:8px 15px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:29px;
+  line-height:1.15;
+  margin-bottom:12px;
+}
+
+.subtitle{
+  color:#ddd;
+  line-height:1.5;
+  margin-bottom:25px;
+}
+
+.details{
+  background:rgba(0,0,0,.25);
+  border-radius:18px;
+  padding:8px 18px;
+  margin-bottom:22px;
+  text-align:left;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.row:last-child{
+  border-bottom:none;
+}
+
+.label{
+  color:#aaa;
+}
+
+.value{
+  font-weight:bold;
+  text-align:right;
+}
+
+.price{
+  color:#ffd000;
+  font-size:34px;
+  font-weight:bold;
+  margin:15px 0 22px;
+}
+
+button{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:17px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.buy{
+  background:#ffd000;
+  color:#111;
+}
+
+.form{
+  display:none;
+  margin-top:22px;
+  text-align:left;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  margin-bottom:12px;
+  border:0;
+  border-radius:12px;
+  font-size:15px;
+  outline:none;
+}
+
+.pay{
+  background:#20c76a;
+  color:white;
+}
+
+.payment{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  background:rgba(32,199,106,.15);
+  border:1px solid rgba(32,199,106,.4);
+  border-radius:15px;
+  line-height:1.6;
+}
+
+.small{
+  color:#aaa;
+  font-size:12px;
+  margin-top:18px;
+  line-height:1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="badge">🎉 NIGHTOUT PARTY</div>
+
+  <h1>Flexing Organizer's Present Nightout Party</h1>
+
+  <p class="subtitle">
+    Come through, have fun and make unforgettable memories! 🔥
+  </p>
+
+  <div class="details">
+
+    <div class="row">
+      <span class="label">📅 Date</span>
+      <span class="value">2nd October</span>
+    </div>
+
+    <div class="row">
+      <span class="label">📍 Venue</span>
+      <span class="value">Florida Night Club and Casino</span>
+    </div>
+
+    <div class="row">
+      <span class="label">🎟️ Ticket</span>
+      <span class="value">Single Entry</span>
+    </div>
+
+    <div class="row">
+      <span class="label">💳 Payment</span>
+      <span class="value">M-Pesa</span>
+    </div>
+
+  </div>
+
+  <div class="price">KSh 200</div>
+
+  <button class="buy" onclick="showForm()">
+    🎟️ BUY TICKET
+  </button>
+
+  <div class="form" id="form">
+
+    <input type="text" id="name" placeholder="Enter your full name">
+
+    <input type="tel" id="phone" placeholder="Enter your M-Pesa phone number">
+
+    <button class="pay" onclick="payment()">
+      Continue to Payment
+    </button>
+
+  </div>
+
+  <div class="payment" id="payment"></div>
+
+  <p class="small">
+    Secure ticket registration • Ticket price KSh 200
+  </p>
+
+</div>
+
+<script>
+
+function showForm(){
+  document.querySelector(".buy").style.display="none";
+  document.getElementById("form").style.display="block";
+}
+
+function payment(){
+
+  const name=document.getElementById("name").value.trim();
+  const phone=document.getElementById("phone").value.trim();
+
+  if(name==="" || phone===""){
+    alert("Please enter your name and M-Pesa phone number.");
+    return;
+  }
+
+  document.getElementById("payment").style.display="block";
+
+  document.getElementById("payment").innerHTML=
+  "<strong>Ticket Registration Started 🎟️</strong><br><br>"+
+  "Name: "+name+"<br>"+
+  "M-Pesa Number: "+phone+"<br><br>"+
+  "<strong>Ticket Price: KSh 200</strong><br><br>"+
+  "M-Pesa payment instructions will be added here.";
+
+}
+
+</script>
+
+</body>
+</html>
