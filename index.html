@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Flexing Organizer's Present Nightout Party</title>
 
 <style>
@@ -16,7 +15,7 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #090014, #4b0878, #080808);
+  background: linear-gradient(135deg, #08000f, #42006d, #050505);
   color: white;
   display: flex;
   justify-content: center;
@@ -26,13 +25,12 @@ body {
 
 .card {
   width: 100%;
-  max-width: 430px;
-  background: rgba(255,255,255,0.09);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 24px;
-  padding: 30px 22px;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  max-width: 450px;
+  background: rgba(255,255,255,.09);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 25px;
+  padding: 28px 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.55);
 }
 
 .badge {
@@ -41,35 +39,36 @@ body {
   color: #111;
   padding: 8px 15px;
   border-radius: 30px;
-  font-weight: bold;
   font-size: 13px;
+  font-weight: bold;
   margin-bottom: 18px;
 }
 
 h1 {
   font-size: 28px;
-  line-height: 1.2;
-  margin-bottom: 12px;
+  line-height: 1.15;
+  text-align: center;
 }
 
 .subtitle {
+  text-align: center;
   color: #ddd;
+  margin: 12px 0 24px;
   line-height: 1.5;
-  margin-bottom: 25px;
 }
 
 .details {
   background: rgba(0,0,0,.25);
   border-radius: 17px;
   padding: 8px 18px;
-  text-align: left;
+  margin-bottom: 22px;
 }
 
 .row {
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  padding: 14px 0;
+  padding: 13px 0;
   border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
@@ -87,36 +86,85 @@ h1 {
 }
 
 .price {
+  text-align: center;
   color: #ffd000;
   font-size: 32px;
   font-weight: bold;
-  margin: 22px 0;
+  margin: 20px 0;
 }
 
-.notice {
+label {
+  display: block;
+  margin: 15px 0 7px;
+  color: #ddd;
+  font-size: 14px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+}
+
+.total {
+  margin-top: 18px;
+  padding: 15px;
   background: rgba(255,208,0,.1);
   border: 1px solid rgba(255,208,0,.3);
-  border-radius: 15px;
-  padding: 16px;
-  color: #eee;
-  line-height: 1.5;
+  border-radius: 14px;
+  text-align: center;
 }
 
-.contact {
-  display: block;
-  margin-top: 20px;
-  padding: 16px;
+.total strong {
+  color: #ffd000;
+  font-size: 25px;
+}
+
+button {
+  width: 100%;
+  border: none;
   border-radius: 14px;
+  padding: 16px;
+  margin-top: 18px;
   background: #ffd000;
   color: #111;
-  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.payment {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(37,211,102,.12);
+  border: 1px solid rgba(37,211,102,.4);
+  border-radius: 15px;
+  line-height: 1.6;
+}
+
+.till {
+  color: #20d46b;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.reference {
+  color: #ffd000;
   font-weight: bold;
 }
 
-.footer {
-  margin-top: 18px;
+.small {
   color: #999;
   font-size: 12px;
+  text-align: center;
+  margin-top: 18px;
+  line-height: 1.5;
 }
 </style>
 </head>
@@ -125,14 +173,14 @@ h1 {
 
 <div class="card">
 
-  <div class="badge">🎉 NIGHTOUT PARTY</div>
+  <div style="text-align:center;">
+    <div class="badge">🎉 NIGHTOUT PARTY</div>
+  </div>
 
-  <h1>
-    Flexing Organizer's Present Nightout Party
-  </h1>
+  <h1>Flexing Organizer's Present Nightout Party</h1>
 
   <p class="subtitle">
-    Come through and enjoy the night with friends.
+    Come through and make unforgettable memories! 🔥
   </p>
 
   <div class="details">
@@ -154,26 +202,118 @@ h1 {
 
   </div>
 
-  <div class="price">
-    KSh 200
+  <div class="price">KSh 200 per ticket</div>
+
+  <label for="name">Full Name</label>
+  <input id="name" type="text" placeholder="Enter your full name">
+
+  <label for="phone">M-Pesa Phone Number</label>
+  <input id="phone" type="tel" placeholder="07XXXXXXXX">
+
+  <label for="tickets">Number of Tickets</label>
+  <select id="tickets" onchange="updateTotal()">
+    <option value="1">1 Ticket</option>
+    <option value="2">2 Tickets</option>
+    <option value="3">3 Tickets</option>
+    <option value="4">4 Tickets</option>
+    <option value="5">5 Tickets</option>
+  </select>
+
+  <div class="total">
+    Total<br>
+    <strong>KSh <span id="total">200</span></strong>
   </div>
 
-  <div class="notice">
-    <strong>Ticket Information</strong>
-    <br><br>
-    For ticket availability and event requirements,
-    contact the event organizer directly.
-  </div>
+  <button onclick="registerTicket()">
+    🎟️ REGISTER TICKETS
+  </button>
 
-  <a class="contact" href="#">
-    CONTACT ORGANIZER
-  </a>
+  <div class="payment" id="payment"></div>
 
-  <div class="footer">
-    Event information • Flexing Organizer
-  </div>
+  <p class="small">
+    Payment is handled separately by the organizer.
+    Keep your payment confirmation for verification.
+  </p>
 
 </div>
+
+<script>
+
+const PRICE = 200;
+
+function updateTotal() {
+  const tickets = Number(document.getElementById("tickets").value);
+  document.getElementById("total").textContent = tickets * PRICE;
+}
+
+function registerTicket() {
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const tickets = Number(document.getElementById("tickets").value);
+  const total = tickets * PRICE;
+
+  if (!name) {
+    alert("Please enter your full name.");
+    return;
+  }
+
+  if (!phone) {
+    alert("Please enter your M-Pesa phone number.");
+    return;
+  }
+
+  const reference =
+    "FLEX-" +
+    Date.now().toString().slice(-6);
+
+  const payment = document.getElementById("payment");
+
+  payment.style.display = "block";
+
+  payment.innerHTML = `
+    <strong>🎟️ Registration Created</strong>
+    <br><br>
+
+    Name: ${escapeHtml(name)}
+    <br>
+
+    Tickets: ${tickets}
+    <br>
+
+    Total: <strong>KSh ${total}</strong>
+    <br><br>
+
+    <strong>M-Pesa Till Number</strong>
+
+    <div class="till">3519583</div>
+
+    Pay the required amount using the organizer's
+    official payment instructions.
+
+    <br><br>
+
+    Your registration reference:
+    <div class="reference">${reference}</div>
+
+    <br>
+
+    Keep your M-Pesa confirmation message and
+    registration reference for payment verification.
+  `;
+
+  payment.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+</script>
 
 </body>
 </html>
